@@ -79,7 +79,7 @@ La banda de color **rojo corresponde a la banda 4 del espectro visible**, el **v
 
 De primeras podemos pensar que al ser variables relacionadas con la intensidad del color, se podría obtener un histograma del mismo pero se ha comprobado que la suma total de los mismos no es idéntica y por lo tanto, se ha descartado la posibilidad de representar un histograma. Junto a esto, se ha observado que para todos los registros el valor de los deciles aumenta progresivamente, presentando unos valores elevados en el último decil y valores cercanos a 0 en el menor de los deciles.
 
-Además, se ha podido comprobar que cada una de estas variables presenta una correlación muy elevado con el decil anterior y posterior al mismo.
+Durante este análisis se ha realizado una reducción de la dimensionalidad de estas variables con el fin de seleccionar las características más influyentes para nuestro modelo y hemos comprobado que no obtenemos buenos datos, por lo que se ha terminado por descartar esta metodología. Además, se ha podido comprobar que cada una de estas variables presenta una correlación muy elevado con el decil anterior y posterior al mismo.
 
 <a name="geometria"></a>
 #### Geometría
@@ -130,7 +130,7 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
     </tbody>
 </table>
 
-Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. Tras aplicar el segundo modelo, el multietiqueta, los resultados que se han obtenido son los siguientes:
+Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación previamente definido, los resultados obtenidos son:
 
 <table class="table table-hover">
     <thead>
