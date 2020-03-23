@@ -115,16 +115,32 @@ Un esquema muy sencillo de la estrategia utilizada es el mostrado a continuació
 <a name="conclusiones"></a>
 ## Conclusiones
 
+Una vez se ha realizado la estrategia anteriormente comentada, se ha generado una tabla con los resultados obtenidos en el entrenamiento de cada uno de los algoritmos de clasificación para el modelo binario, la cual se muestra a continuación:
+
 <table class="table table-hover">
     <thead>
-        <tr> <th>Modelo</th> <th>Time (m)</th> <th>F1 score</th><th>Params</th></tr> 
+        <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
         <tr> <td>SGD</td> <td>0.396</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
         <tr> <td>Logistic regression</td> <td>0.901</td> <td>0.75</td> <td>C: 0.250075, tol: 0.001</td> </tr>
         <tr> <td>Decision tree</td> <td>0.278</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
         <tr> <td>Random forest</td> <td>3.15</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
-        <tr> <td>Xgboost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
+        <tr> <td>XGBoost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
     </tbody>
 </table>
 
+Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. Tras aplicar el segundo modelo, el multietiqueta, los resultados que se han obtenido son los siguientes:
+
+<table class="table table-hover">
+    <thead>
+        <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
+    </thead>
+    <tbody>
+        <tr> <td>SGD</td> <td>0.396</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
+        <tr> <td>Logistic regression</td> <td>0.901</td> <td>0.75</td> <td>C: 0.250075, tol: 0.001</td> </tr>
+        <tr> <td>Decision tree</td> <td>0.278</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
+        <tr> <td>Random forest</td> <td>3.15</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
+        <tr> <td>XGBoost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
+    </tbody>
+</table>
