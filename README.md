@@ -2,7 +2,7 @@
 
 ## UniversityHack2020 - Equipo: CMBC
 
-![Logo UniversityHack2020](data/img/logo-light.png)
+![Logo UniversityHack2020](data/img/logo_light.png)
 
 ## Tabla de contenidos
 
@@ -11,16 +11,16 @@
  3. [Breve resumen del trabajo desarrollado](#resumen)
  4. [Análisis exploratorio y manipulación de variables](#analisis-exploratorio)
  	* [Variables numéricas](#variables-numericas)
- 		+ [Geoposición](#geoposicion)
- 		+ [Color](#color)
- 		+ [Geometría](#geometria)
- 		+ [Otras](#otras)
+ 		* [Geoposición](#geoposicion)
+ 		* [Color](#color)
+ 		* [Geometría](#geometria)
+ 		* [Otras](#otras)
  	* [Variables discretas](#variables-discretas)
  5. [Construcción y justificación selección de los modelos](#seleccion-modelos)
  6. [Conclusiones](#conclusion)
 
 <a name="introduccion"></a>
-## Introducción
+## 1. Introducción
 
 Este proyecto fundamenta la propuesta ideada por el equipo **CMBC** para el reto de [UniversityHack 2020 DATATHON](https://www.cajamardatalab.com/datathon-cajamar-universityhack-2020/)
 
@@ -39,7 +39,7 @@ Para ello se cuenta con dos ficheros, los cuales contienen un listado de superfi
 Se cuenta con un fichero para realizar el análisis y la generación de los algoritmos de clasificación empleados, denominado _Estimar.txt_ y también con un segundo fichero, el cual se utilizará para realizar la entrega a la organzación. Este segundo fichero contiene una serie de registros con las mismas variables pero sin la etiqueta que clasifique el suelo.
 
 <a name="tecnologia"></a>
-## Tecnología necesaria para la realización de este proyecto
+## 2. Tecnología necesaria para la realización de este proyecto
 * [Python](https://www.python.org)
 * [Jupyter notebook](https://jupyter.org)
 * [scikit-learn](https://scikit-learn.org/stable/index.html)
@@ -47,7 +47,7 @@ Se cuenta con un fichero para realizar el análisis y la generación de los algo
 * [XGBoost](https://xgboost.readthedocs.io/en/latest/)
 
 <a name="resumen"></a>
-## Breve resumen del trabajo desarrollado
+## 3. Breve resumen del trabajo desarrollado
 
 Con el fin de cumplir el principal objetivo del reto, se ha realizado un extenso análisis previo para comprenter y aprender lo máximo posible acerda de las imágenes extraidas por el satélite Sentinel II del servicio Copernicus de la Agencia Espacial Europea, ya que la mayoría de las variables del conjunto de datos pertenecen a la misma. Además, se ha comprobado la importancia de cada una de estas variables en función de nuestro propósito.
 
@@ -56,7 +56,7 @@ Después de revisar toda la información posible y de un análisis exploratorio,
 En todos y cada uno de estos modelos se ha realizado un intenso estudio de los hiperparámetros, regresores, parámetros y distintos conjuntos de entrenamiento y validación mediante técnicas como la validación cruzada. Finalmente se han comprobado los resultados con un conjunto de validación previamente definido, el cual no se ha utilizado en ninguna otra fase del proyecto.
 
 <a name="analisis-exploratorio"></a>
-## Análisis exploratorio y manipulación de variables
+## 4. Análisis exploratorio y manipulación de variables
 
 El principal problema de este reto es el desbalanceo que existe en el conjunto de datos proporcionado por la Organización, por lo tanto, para intentar reducir o comprender los registros y las variables, se ha realizado un profundo análisis del mismo y previamente de los aspectos que pudiesen favorecer la tarea del mismo.
 
@@ -98,7 +98,7 @@ Este conjunto de variables es reducido en comparación con las variables numéri
 Junto a este implementación se ha demostrado que la mayor parte de los terrenos del conjunto de datos pertenecen a una calidad media del catastro, situandose en los valores intermedios del rango establecido.
 
 <a name="seleccion-modelos"></a>
-## Construcción y justificación selección de los modelos
+## 5. Construcción y justificación selección de los modelos
 
 Como se ha comentado al inicio, se han desarrollado diversos modelos con el fin de buscar una diversidad entre los mismos y seleccionar aquel que ofrezca unos resultados más precisos y robustos. Además, cabe destacar que se ha realizado una técnica, la cual consiste en el **apilamiento de modelos**, es decir, primeramente se ha seleccionado y entrenado un modelo binario y posteriormente, con los resultados obtenidos se ha desarrollado un modelo multietiqueta. 
 
@@ -113,7 +113,7 @@ Un esquema muy sencillo de la estrategia utilizada es el mostrado a continuació
 ![Esquema estrategia apilamiento de modelos](data/img/diagrama_modelos.png)
 
 <a name="conclusiones"></a>
-## Conclusiones
+## 6. Conclusiones
 
 Una vez se ha realizado la estrategia anteriormente comentada, se ha generado una tabla con los resultados obtenidos en el entrenamiento de cada uno de los algoritmos de clasificación para el modelo binario, la cual se muestra a continuación:
 
