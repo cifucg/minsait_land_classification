@@ -37,7 +37,7 @@ Para ello se cuenta con dos ficheros, los cuales contienen un listado de superfi
 
 ![Mapa introducctorio de ejemplo](data/img/mapa_introduccion.jpg)
 
-Se cuenta con un fichero para realizar el análisis y la generación de los algoritmos de clasificación empleados, denominado _Estimar.txt_ y también con un segundo fichero, el cual se utilizará para realizar la entrega a la organzación. Este segundo fichero contiene una serie de registros con las mismas variables pero sin la etiqueta que clasifique el suelo.
+Se cuenta con un fichero para realizar el análisis y la generación de los algoritmos de clasificación empleados, denominado _Modelar_.txt_ y también con un segundo fichero, _Estimar.txt_ , el cual se utilizará para realizar la entrega a la organzación. Este segundo fichero contiene una serie de registros con las mismas variables pero sin la etiqueta que clasifique el suelo.
 
 <a name="tecnologia"></a>
 ## 2. Tecnología necesaria para la realización de este proyecto
