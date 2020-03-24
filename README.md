@@ -19,6 +19,7 @@
  5. [Construcción y justificación selección de los modelos](#seleccion-modelos)
  6. [Conclusiones](#conclusion)
 
+
 <a name="introduccion"></a>
 ## 1. Introducción
 
@@ -117,7 +118,7 @@ Un esquema muy sencillo de la estrategia utilizada es el mostrado a continuació
 
 Una vez se ha realizado la estrategia anteriormente comentada, se ha generado una tabla con los resultados obtenidos en el entrenamiento de cada uno de los algoritmos de clasificación para el modelo binario, la cual se muestra a continuación:
 
-> :warning: **Estos tiempos dependen principalmente del ordenador utilizado para el entrenamiento de los modelos**
+> :warning: **Estos tiempos dependen principalmente del ordenador utilizado para el entrenamiento de los modelos**.
 
 <table class="table table-hover">
     <thead>
@@ -132,7 +133,11 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
     </tbody>
 </table>
 
-Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación previamente definido, los resultados obtenidos son:
+Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. 
+
+
+
+Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación previamente definido, los resultados obtenidos son:
 
 <table class="table table-hover">
     <thead>
@@ -142,3 +147,5 @@ Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una 
         <tr> <td>Random forest</td> <td>13.3</td> <td>0.851</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
     </tbody>
 </table>
+
+> :warning: **Los tiempos obtenidos han sido mediante la ejecución de la libreta con el MacBookPro de 16' cuyas especificaciones son un procesador Intel i9 y 16GB de RAM**.
