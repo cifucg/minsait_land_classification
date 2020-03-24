@@ -125,11 +125,11 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
         <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
-        <tr> <td>SGD</td> <td>0.396</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
-        <tr> <td>Logistic regression</td> <td>0.965</td> <td>0.901</td> <td>C: 0.250075, tol: 0.001</td> </tr>
-        <tr> <td>Decision tree</td> <td>0.278</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
-        <tr> <td>Random forest</td> <td>3.15</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
-        <tr> <td>XGBoost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
+        <tr> <td>SGD</td> <td>0.398</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
+        <tr> <td>Logistic regression</td> <td>1.088</td> <td>0.901</td> <td>C: 0.250075, tol: 0.001</td> </tr>
+        <tr> <td>Decision tree</td> <td>0.298</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
+        <tr> <td>Random forest</td> <td>3.273</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
+        <tr> <td>XGBoost</td> <td>12.119</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
     </tbody>
 </table>
 
@@ -144,7 +144,7 @@ Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación pre
         <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
-        <tr> <td>Random forest</td> <td>13.3</td> <td>0.851</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
+        <tr> <td>Random forest</td> <td>13.1</td> <td>0.851</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
     </tbody>
 </table>
 
