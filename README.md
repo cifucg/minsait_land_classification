@@ -51,7 +51,7 @@ Se cuenta con un fichero para realizar el análisis y la generación de los algo
 
 Con el fin de cumplir el principal objetivo del reto, se ha realizado un extenso análisis previo para comprenter y aprender lo máximo posible acerda de las imágenes extraidas por el satélite Sentinel II del servicio Copernicus de la Agencia Espacial Europea, ya que la mayoría de las variables del conjunto de datos pertenecen a la misma. Además, se ha comprobado la importancia de cada una de estas variables en función de nuestro propósito.
 
-Después de revisar toda la información posible y de un análisis exploratorio, el cual se comenta en el siguiente apartado, se ha construido un conjunto de datos en función de los problemas que han ido surgiendo (valores atípicos, valores perdidos, etc). Una vez estudiado el conjunto de datos, se ha continuado con una estrategia de apilamiento de modelos, es decir, se ha desarrollado un apartado comparando diversos modelos binarios para finalmente, seleccionar aquel que ofrezca un resultado más preciso y robusto. Posteriormente se ha desarrollado un modelo multietiqueta mediante el resultado obtenido en el primer modelo.
+Después de revisar toda la información posible y de un análisis exploratorio, el cual se comenta en el siguiente apartado, se ha construido un conjunto de datos en función de los problemas que han ido surgiendo (valores atípicos, valores perdidos, etc). Una vez estudiado el conjunto de datos, se ha continuado con **una estrategia de apilamiento de modelos**, es decir, se ha desarrollado un apartado comparando diversos modelos binarios para finalmente, seleccionar aquel que ofrezca un resultado más preciso y robusto. Posteriormente se ha desarrollado un modelo multietiqueta mediante el resultado obtenido en el primer modelo.
 
 En todos y cada uno de estos modelos se ha realizado un intenso estudio de los hiperparámetros, regresores, parámetros y distintos conjuntos de entrenamiento y validación mediante técnicas como la validación cruzada. Finalmente se han comprobado los resultados con un conjunto de validación previamente definido, el cual no se ha utilizado en ninguna otra fase del proyecto.
 
@@ -125,7 +125,7 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
     </thead>
     <tbody>
         <tr> <td>SGD</td> <td>0.396</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
-        <tr> <td>Logistic regression</td> <td>0.901</td> <td>0.75</td> <td>C: 0.250075, tol: 0.001</td> </tr>
+        <tr> <td>Logistic regression</td> <td>0.965</td> <td>0.901</td> <td>C: 0.250075, tol: 0.001</td> </tr>
         <tr> <td>Decision tree</td> <td>0.278</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
         <tr> <td>Random forest</td> <td>3.15</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
         <tr> <td>XGBoost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
@@ -139,10 +139,6 @@ Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una 
         <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
-        <tr> <td>SGD</td> <td>0.396</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
-        <tr> <td>Logistic regression</td> <td>0.901</td> <td>0.75</td> <td>C: 0.250075, tol: 0.001</td> </tr>
-        <tr> <td>Decision tree</td> <td>0.278</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
-        <tr> <td>Random forest</td> <td>3.15</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
-        <tr> <td>XGBoost</td> <td>12.023</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
+        <tr> <td>Random forest</td> <td>13.3</td> <td>0.851</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
     </tbody>
 </table>
