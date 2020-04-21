@@ -37,31 +37,57 @@ Para ello se cuenta con dos ficheros, los cuales contienen un listado de superfi
 
 ![Mapa introducctorio de ejemplo](data/img/mapa_introduccion.jpg)
 
-Se cuenta con un fichero para realizar el análisis y la generación de los algoritmos de clasificación empleados, denominado _Modelar_.txt_ y también con un segundo fichero, _Estimar.txt_ , el cual se utilizará para realizar la entrega a la organzación. Este segundo fichero contiene una serie de registros con las mismas variables pero sin la etiqueta que clasifique el suelo.
+Se cuenta con un fichero para realizar el análisis y la generación de los algoritmos de clasificación empleados, denominado _Modelar.txt_ y también con un segundo fichero, _Estimar.txt_ , el cual se utilizará para realizar la entrega a la organzación. Este segundo fichero contiene una serie de registros con las mismas variables pero sin la etiqueta que clasifique el suelo.
 
 <a name="tecnologia"></a>
-## 2. Tecnología necesaria para la realización de este proyecto
+## 2. Requisitos y estructura del proyecto
+
+Los requisitos necesarios para la realización del proyecto son los siguientes:
+
 * [Python](https://www.python.org)
 * [Jupyter notebook](https://jupyter.org)
 * [scikit-learn](https://scikit-learn.org/stable/index.html)
 * [Pandas](https://pandas.pydata.org)
 * [XGBoost](https://xgboost.readthedocs.io/en/latest/)
 
+Por otro lado, la estructura del contenido del proyecto es:
+
+```
+.
+├── Minsait_Land_Classification_CMBC.ipynb
+├── UCLM_CMBC.txt
+├── data
+│   ├── Estimar_UH2020.txt
+│   ├── Modelar_UH2020.txt
+│   └── img
+│       ├── AUCPredictionsRanked.svg
+│       ├── diagrama_modelos.png
+│       ├── logo_light.png
+│       ├── mapa_introduccion.jpg
+│       ├── sentinel_resolution.jpg
+│       └── validacion_cruzada.jpeg
+├── models
+│   ├── binary_final.model
+│   └── multilabel_final.model
+```
+
+Donde tenemos en el directorio raíz la libreta (_Minsait\_Land\_Classification\_CMBC.ipynb_) que contiene el trabajo realizado, el dataset de entrega _UCLM\_CMBC.txt_, la carpeta `data` con los ficheros de datos utilizados y las imagenes que se muestran en el interior de la libreta, la carpeta `models` con los modelos aprendidos (necesarios si no se desea compilar por completo la libreta) y un fichero _pdf_ con el resumen del trabajo desarrollado.
+
 <a name="resumen"></a>
 ## 3. Breve resumen del trabajo desarrollado
 
-Con el fin de cumplir el principal objetivo del reto, se ha realizado un extenso análisis previo para comprenter y aprender lo máximo posible acerda de las imágenes extraidas por el satélite Sentinel II del servicio Copernicus de la Agencia Espacial Europea, ya que la mayoría de las variables del conjunto de datos pertenecen a la misma. Además, se ha comprobado la importancia de cada una de estas variables en función de nuestro propósito.
+Con el fin de cumplir el principal objetivo del reto, se ha realizado un extenso análisis previo para comprender y aprender lo máximo posible acerda de las imágenes extraidas por el satélite Sentinel II del servicio Copernicus de la Agencia Espacial Europea, ya que la mayoría de las variables del conjunto de datos pertenecen a la misma. Además, se ha comprobado la importancia de cada una de estas variables en función de nuestro propósito.
 
-Después de revisar toda la información posible y de un análisis exploratorio, el cual se comenta en el siguiente apartado, se ha construido un conjunto de datos en función de los problemas que han ido surgiendo (valores atípicos, valores perdidos, etc). Una vez estudiado el conjunto de datos, se ha continuado con **una estrategia de apilamiento de modelos**, es decir, se ha desarrollado un apartado comparando diversos modelos binarios para finalmente, seleccionar aquel que ofrezca un resultado más preciso y robusto. Posteriormente se ha desarrollado un modelo multietiqueta mediante el resultado obtenido en el primer modelo.
+Después de revisar toda la información posible y de un análisis exploratorio, el cual se comenta en el siguiente apartado, se ha desglosado el conjunto de datos en función de los problemas que han ido surgiendo (valores atípicos, valores perdidos, etc). Una vez estudiado el conjunto de datos, se ha continuado con **una estrategia de apilamiento de modelos**, es decir, se ha desarrollado un apartado comparando diversos modelos binarios para finalmente, seleccionar aquel que ofrezca un resultado más preciso y robusto. Posteriormente se ha desarrollado un modelo multietiqueta que se utiliza sobre la predicción obtenida en el primero modelo.
 
-En todos y cada uno de estos modelos se ha realizado un intenso estudio de los hiperparámetros, regresores, parámetros y distintos conjuntos de entrenamiento y validación mediante técnicas como la validación cruzada. Finalmente se han comprobado los resultados con un conjunto de validación previamente definido, el cual no se ha utilizado en ninguna otra fase del proyecto.
+En todos y cada uno de estos modelos se ha realizado un intenso estudio de los hiperparámetros y distintos conjuntos de entrenamiento y validación mediante técnicas como la validación cruzada. Finalmente se han comprobado los resultados con un conjunto de validación previamente definido, el cual no se ha utilizado en ninguna otra fase del proyecto.
 
 <a name="analisis-exploratorio"></a>
 ## 4. Análisis exploratorio y manipulación de variables
 
 El principal problema de este reto es el desbalanceo que existe en el conjunto de datos proporcionado por la Organización, por lo tanto, para intentar reducir o comprender los registros y las variables, se ha realizado un profundo análisis del mismo y previamente de los aspectos que pudiesen favorecer la tarea del mismo.
 
-Primeramente y tras comprobar el total de registros que presenta cada una de las diferentes etiquetas de la variable objetivo se ha llevado a cabo una división en función del tipo de cada una de las variables, dando como resultado una lista de variables numéricas y otra de variables categóricas. El análisis de las mismas se ha realizado de forma independiente ya que cada tipo requiere una tratamiento distinto.
+Primeramente y tras comprobar el total de registros que presenta cada una de las diferentes etiquetas de la variable objetivo se ha llevado a cabo una división en función del tipo de cada una de las variables, dando como resultado una lista de variables numéricas y otra de variables categóricas. El análisis de las mismas se ha realizado de forma independiente ya que cada tipo requiere un tratamiento distinto.
 
 <a name="variables-numericas"></a>
 ### Variables numéricas
@@ -72,6 +98,12 @@ Para las variables numéricas se ejecutado otra separación en función de la in
 #### Geoposición
 Estas variables, como ya sabemos gracias a la información proporcionada por la Organización, han sido escaladas y desplazadas aleatoriamente, manteniendo la relación con el resto de registros. Aún así, analizando de forma gráfica este tipo de variables hemos podido comprobar que la mayor parte de los registros están situados de forma uniforme en un mapa y que adémás, no existe una distinción por zonas ya que podemos encontrar terreno de cualquier tipo cerca de otro, aunque bien es cierto que en ciertos casos esto se produce con muy poca frecuencia. Por ejemplo, etiquetas como `Agriculture` o `Industrial` están situadas en las afueras del lo que sería el centro de la imagen tomada como referencia.
 
+Se han optado por probar las estrategias de clasificación _KNeighborsClassifier_ y _KMeans_ pero nos hemos decantado por la primera de ellas. La cual nos permite obtener una estimación en función de las variables de geoposición. El algoritmo implementado devolvía la probabilidad con respecto al _k_ valor elegido de que fuese de un tipo u otro sus correspondientes vecinos, esto nos permite obtener una especie de densidad con respecto a la vecindad en función a la localización en la que se encontrase el registro a predecir.
+
+Los resultados obtenidos tras entrenar los modelos con esta nueva serie de variables no han resultado demasiado positivos tras la comprobación realizada en una de las entregas intermedias propuesta por la organización, por lo que hemos decidido descartar esta opción.
+
+Aunque la otra opción no haya tenido éxito, **hemos generado una nueva variable que nos permite saber la distancia de cada uno de los registros con respecto a un punto céntrico**. Este valor es el centro calculado por todos los registros que conforman nuestro actual conjunto de datos.
+
 <a name="color"></a>
 #### Color
 En cuanto a las variables correspondientes al color de la imagen sabemos que, después de leer información sobre este tipo de satélite, se ha extraído información de 4 canales (R, G, B y NIR), correspondientes a las bandas de color rojo, verde y azul, y el infrarrojo cercano. El valor mostrado en cada una de estas variables corresponde a la intensidad por deciles en cada imagen.
@@ -80,13 +112,20 @@ La banda de color **rojo corresponde a la banda 4 del espectro visible**, el **v
 
 De primeras podemos pensar que al ser variables relacionadas con la intensidad del color, se podría obtener un histograma del mismo pero se ha comprobado que la suma total de los mismos no es idéntica y por lo tanto, se ha descartado la posibilidad de representar un histograma. Junto a esto, se ha observado que para todos los registros el valor de los deciles aumenta progresivamente, presentando unos valores elevados en el último decil y valores cercanos a 0 en el menor de los deciles.
 
-Durante este análisis se ha realizado una **reducción de la dimensionalidad** de estas variables, mediante PCA, con el fin de seleccionar las características más influyentes para nuestro modelo y hemos comprobado que no obtenemos los resultados esperados, por lo que se ha terminado por descartar esta metodología. Además, se ha podido comprobar que cada una de estas variables presenta una correlación muy elevado con el decil anterior y posterior al mismo.
+Durante este análisis se ha realizado una **reducción de la dimensionalidad** de estas variables, mediante PCA, con el fin de seleccionar las características más influyentes para nuestro modelo y hemos comprobado que no obtenemos los resultados esperados, por lo que se ha terminado por descartar esta metodología. Además, se ha podido comprobar que cada una de estas variables presenta una correlación muy elevada con el decil anterior y posterior al mismo.
+
+Como consecuencia de ello, hemos optado por reducir la dimensionalidad de algunos de las variables referentes a los deciles que presenten una alta correlación entre sus vecinas. Los deciles que no se van a ver afectados en las variables referentes a los colores van a ser:
+
+* Decil 0: Debido a que se trata del valor mínimo de cada uno de los grupos.
+* Decil 10: Debido a que representa el valor máximo de cada uno de los grupos.
+* Decil 1 y 9: Puesto que no presentan correlación directa con los deciles 0 y 10.
+* Del resto de deciles, nos quedaremos con los que representan los deciles impares, **eliminando de este modo los deciles 2, 4, 6 y 8.**
 
 <a name="geometria"></a>
 #### Geometría
 Otro de los aspectos importantes de cara a la clasificación del terreno son las variables geométricas, por ello mismo hemos llevado a cabo un estudio en profundidad de las mismas y una comparación con el resto de variables, independientemente del tipo que presente. Con ello se ha llegado a la conclusión, como era de esperar, que el área más elevada se presenta en etiquetas como `Agriculture`, `Retail` y `Other`.
 
-Asimismo se han estudiado todos los valores de estas variables ya que presentan _outliers_, dando como resultado la eliminación de los mismos para comprobar el conjunto de datos resultante, el cual ha disminuido notablemente el número de registros. A consecuencia de ello, se ha comprobado que no todos ellos son valores atípicos y por lo tanto, no se ha realizado una eliminación sobre el conjunto de datos final.
+Asimismo se han estudiado todos los valores de estas variables ya que presentan _outliers_, dando como resultado la eliminación de los mismos para comprobar el conjunto de datos resultante, el cual ha disminuido notablemente el número de registros. A consecuencia de ello, se ha comprobado que no todos ellos son valores atípicos y por lo tanto, no se ha realizado una eliminación sobre el conjunto de datos final. Además, esta técnica se probó en una de las entregas intermedias y vimos que no se producía mejora en los resultados, probalemente a un sobreajuste del modelo.
 
 <a name="otras"></a>
 #### Otras
@@ -113,6 +152,16 @@ Un esquema muy sencillo de la estrategia utilizada es el mostrado a continuació
 
 ![Esquema estrategia apilamiento de modelos](data/img/diagrama_modelos.png)
 
+### 5.1 Estrategias probadas pero no implementadas
+
+Algunas de las estrategias que se tuvieron en cuanta y se han ido probando a lo largo del desarrollo del proyecto han sido las siguientes:
+
+* Con respecto a la técnica de **over-sampling** utilizada, se han probado algunos algoritmos como son: **SMOTETomek** o **SMOTEENN**, pero seleccionamos la que mejores resultados obtenia.
+* También se probó la utilización de otra técnica denominada **under-sampling** mediante algoritmos como **RandomUnderSampler** o **NearMiss**, dando peores resultados que la utilizada finalmente.
+
+Todas estas técnicas comentadas se han ido realizando y comprobando junto a la creación de algunas variables o la utilización de otras técnicas para la reducción de la dimensionalidad del conjunto inicial de datos. Finalmente, nos hemos decantado por aquellas técnicas y variables que, en conjunto, nos otorgan un mejor resultado de cara al conjunto de validación.
+
+
 <a name="conclusiones"></a>
 ## 6. Conclusiones
 
@@ -125,26 +174,25 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
         <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
-        <tr> <td>SGD</td> <td>0.398</td> <td>0.911</td> <td>max_iter: 100, tol: 0.0001</td> </tr>
-        <tr> <td>Logistic regression</td> <td>1.088</td> <td>0.901</td> <td>C: 0.250075, tol: 0.001</td> </tr>
-        <tr> <td>Decision tree</td> <td>0.298</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
-        <tr> <td>Random forest</td> <td>3.273</td> <td>0.951</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
-        <tr> <td>XGBoost</td> <td>12.119</td> <td>0.96</td> <td>max_depth: 10, n_estimators: 200</td> </tr>
+        <tr> <td>SGD</td> <td>0.403</td> <td>0.913</td> <td>max_iter: 50, tol: 0.0001</td> </tr>
+        <tr> <td>Logistic regression</td> <td>0.751</td> <td>0.897</td> <td>C: 1.0, tol: 0.001</td> </tr>
+        <tr> <td>Decision tree</td> <td>0.224</td> <td>0.929</td> <td>max_depth: 10</td> </tr>
+        <tr> <td>Random forest</td> <td>2.697</td> <td>0.95</td> <td>max_depth: 20, n_estimators: 100</td> </tr>
+        <tr> <td>XGBoost</td> <td>11.743</td> <td>0.959</td> <td>max_depth: 20, n_estimators: 200</td> </tr>
     </tbody>
 </table>
 
 Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. 
 
 
-
 Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación previamente definido, los resultados obtenidos son:
 
 <table class="table table-hover">
     <thead>
-        <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>F1 score</th><th>Parámetros</th></tr> 
+        <tr> <th>Modelo</th> <th>Tiempo (min)</th> <th>Accuracy</th><th>Parámetros</th></tr> 
     </thead>
     <tbody>
-        <tr> <td>Random forest</td> <td>13.1</td> <td>0.851</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
+        <tr> <td>Random forest</td> <td>13.1</td> <td>0.8484</td> <td>max_depth: 20, n_estimators: 200, class_weight: 'balanced'</td> </tr>
     </tbody>
 </table>
 
