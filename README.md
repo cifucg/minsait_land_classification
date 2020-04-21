@@ -17,6 +17,7 @@
  		* [Otras](#otras)
  	* [Variables discretas](#variables-discretas)
  5. [Construcción y justificación selección de los modelos](#seleccion-modelos)
+ 	* [Estrategias probadas pero no implementadas](#estrategias)
  6. [Conclusiones](#conclusion)
 
 
@@ -98,11 +99,15 @@ Para las variables numéricas se ejecutado otra separación en función de la in
 #### Geoposición
 Estas variables, como ya sabemos gracias a la información proporcionada por la Organización, han sido escaladas y desplazadas aleatoriamente, manteniendo la relación con el resto de registros. Aún así, analizando de forma gráfica este tipo de variables hemos podido comprobar que la mayor parte de los registros están situados de forma uniforme en un mapa y que adémás, no existe una distinción por zonas ya que podemos encontrar terreno de cualquier tipo cerca de otro, aunque bien es cierto que en ciertos casos esto se produce con muy poca frecuencia. Por ejemplo, etiquetas como `Agriculture` o `Industrial` están situadas en las afueras del lo que sería el centro de la imagen tomada como referencia.
 
+![Mapa coordenadas X e Y](data/img/mapa_geo.jpeg)
+
 Se han optado por probar las estrategias de clasificación _KNeighborsClassifier_ y _KMeans_ pero nos hemos decantado por la primera de ellas. La cual nos permite obtener una estimación en función de las variables de geoposición. El algoritmo implementado devolvía la probabilidad con respecto al _k_ valor elegido de que fuese de un tipo u otro sus correspondientes vecinos, esto nos permite obtener una especie de densidad con respecto a la vecindad en función a la localización en la que se encontrase el registro a predecir.
 
 Los resultados obtenidos tras entrenar los modelos con esta nueva serie de variables no han resultado demasiado positivos tras la comprobación realizada en una de las entregas intermedias propuesta por la organización, por lo que hemos decidido descartar esta opción.
 
 Aunque la otra opción no haya tenido éxito, **hemos generado una nueva variable que nos permite saber la distancia de cada uno de los registros con respecto a un punto céntrico**. Este valor es el centro calculado por todos los registros que conforman nuestro actual conjunto de datos.
+
+![Distancia al centro](data/img/distance_to_center.jpeg)
 
 <a name="color"></a>
 #### Color
@@ -152,6 +157,7 @@ Un esquema muy sencillo de la estrategia utilizada es el mostrado a continuació
 
 ![Esquema estrategia apilamiento de modelos](data/img/diagrama_modelos.png)
 
+<a name="estrategias"></a>
 ### 5.1 Estrategias probadas pero no implementadas
 
 Algunas de las estrategias que se tuvieron en cuanta y se han ido probando a lo largo del desarrollo del proyecto han sido las siguientes:
@@ -182,6 +188,14 @@ Una vez se ha realizado la estrategia anteriormente comentada, se ha generado un
     </tbody>
 </table>
 
+Aquí se puede observar de forma gráfica:
+
+![Tiempos obtenidos en el entrenamiento de los modelos](data/img/grafica_tiempos_modelos.jpeg)
+
+Y los _f1-score_ obtenidos son:
+
+![Resultados obtenidos](data/img/f1_score_modelos.jpeg)
+
 Como se puede comprobar, el **Random Forest** y el **XGBoost** no presentan una gran diferencia, pero a fin de obtener el más robusto se ha optado por el segundo. 
 
 
@@ -197,3 +211,7 @@ Tras aplicar el segundo modelo, el multietiqueta, al conjunto de validación pre
 </table>
 
 > :warning: **Los tiempos obtenidos han sido mediante la ejecución de la libreta con el MacBookPro de 16' cuyas especificaciones son un procesador Intel i9 y 16GB de RAM**.
+
+Las clasificaciones obtenidas con nuestros modelos sobre el conjunto de datos a estimar son las que se muestran en el siguiente gráfico:
+
+![Predicción del conjunto de validación](data/img/prediccion_conjunto_validacion.jpeg)
