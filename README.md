@@ -58,8 +58,6 @@ Por otro lado, la estructura del contenido del proyecto es:
 ├── Minsait_Land_Classification_CMBC.ipynb
 ├── UCLM_CMBC.txt
 ├── data
-│   ├── Estimar_UH2020.txt
-│   ├── Modelar_UH2020.txt
 │   └── img
 │       ├── AUCPredictionsRanked.svg
 │       ├── diagrama_modelos.png
@@ -67,12 +65,10 @@ Por otro lado, la estructura del contenido del proyecto es:
 │       ├── mapa_introduccion.jpg
 │       ├── sentinel_resolution.jpg
 │       └── validacion_cruzada.jpeg
-├── models
-│   ├── binary_final.model
-│   └── multilabel_final.model
+└── README.pdf
 ```
 
-Donde tenemos en el directorio raíz la libreta (_Minsait\_Land\_Classification\_CMBC.ipynb_) que contiene el trabajo realizado, el dataset de entrega _UCLM\_CMBC.txt_, la carpeta `data` con los ficheros de datos utilizados y las imagenes que se muestran en el interior de la libreta, la carpeta `models` con los modelos aprendidos (necesarios si no se desea compilar por completo la libreta) y un fichero _pdf_ con el resumen del trabajo desarrollado.
+Donde tenemos en el directorio raíz la libreta (_Minsait\_Land\_Classification\_CMBC.ipynb_) que contiene el trabajo realizado, el dataset de entrega _UCLM\_CMBC.txt_, la carpeta `data` con los ficheros de datos utilizados y las imagenes que se muestran en el interior de la libreta y un fichero _pdf_ con el resumen del trabajo desarrollado.
 
 <a name="resumen"></a>
 ## 3. Breve resumen del trabajo desarrollado
